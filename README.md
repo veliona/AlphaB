@@ -40,20 +40,19 @@ Here is an example usage for AlphaB (this example doesn't include specifying a d
 ```python
 #!/usr/bin/env python3
 
-from bucket_test import TestType, BucketTest
+from bucket_test import BucketTest, GroupBy
+import pandas as pd
 
 
 def main():
+    df = pd.DataFrame()
+
     bucket_test = BucketTest(
-        test_type=TestType.ABTESTING,
-        y_axis="CTR",
-        category_name="design",
-        filter_name="device",
-        categories={
-            'A': ['10303394', '03948402', '30495043', '30495906'],
-            'B': ['04342343', '64748877', '33677675', '98657939'],
-        },
-        x_axis="date",
+        df=df[df['device'] == 'mobile'],
+        y_axis='impressions',
+        group='design',
+        x_axis='date',
+        custom_title='Impressions by design for mobile',
     )
 
     bucket_test.render()

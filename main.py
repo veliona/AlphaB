@@ -8,10 +8,11 @@ def main():
     df = pd.DataFrame()
 
     bucket_test = BucketTest(
-        df=df,
+        df=df[df['device'] == 'mobile'],
         y_axis='impressions',
-        groups=['design', 'device'],
+        group='design',
         x_axis='date',
+        custom_title='Impressions by design for mobile',
     )
 
     bucket_test.render()
