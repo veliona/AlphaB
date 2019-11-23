@@ -2,6 +2,10 @@
 
 import matplotlib.pyplot as plt
 import pandas as pd
+from scipy.stats import shapiro
+from scipy.stats import ttest_ind
+from scipy.stats import f
+from scipy.stats import mannwhitneyu
 
 
 class BucketTest:
@@ -47,11 +51,14 @@ class BucketTest:
     def compute_pvalues(self):
         """ ComputePValues computes all pvalues, variance etc. for each combination of categories within
         the bucket test and renders a table containing the results """
+        # Create a list with unique values from a dataframe
+        values_df_group = self.df[self.group].unique()
+
         # normality
-        normality_princesses_pvalue = shapiro(df_princesses)[1]
-        normality_heroes_pvalue = shapiro(df_heroes)[1]
-        print('Shapiro princesses p-value: ', normality_princesses_pvalue)
-        print('Shapiro heroes p-value: ', normality_heroes_pvalue)
+        normality_group_a = shapiro(self.df[self.df[self.group] == values_df_group[0]])[self.y_axis]
+        normality_group_b = shapiro(self.df[self.df[self.group] == values_df_group[1]])[self.y_axis]
+        print('Shapiro princesses p-value: ', normality_group_a)
+        print('Shapiro heroes p-value: ', normality_group_b)
 
         # variance
         F = np.var(df_princesses) / np.var(df_heroes)
@@ -63,7 +70,7 @@ class BucketTest:
         if (normality_princesses_pvalue > 0.05 and normality_heroes_pvalue > 0.05 and f_pvalue > 0.05):
             # test
             test_pvalue = ttest_ind(df_princesses, df_heroes).pvalue
-            print('Test p-value: ', test_pvalue)
+            print('T-test p-value: ', test_pvalue)
             return (test_pvalue <= 0.05)
         else:
             # Mann-Whitney U test
