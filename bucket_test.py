@@ -57,26 +57,31 @@ class BucketTest:
         # normality
         normality_group_a = shapiro(self.df[self.df[self.group] == values_df_group[0]])[self.y_axis]
         normality_group_b = shapiro(self.df[self.df[self.group] == values_df_group[1]])[self.y_axis]
-        print('Shapiro princesses p-value: ', normality_group_a)
-        print('Shapiro heroes p-value: ', normality_group_b)
+        print('Shapiro group A p-value: ', normality_group_a)
+        print('Shapiro group B p-value: ', normality_group_b)
 
         # variance
-        F = np.var(df_princesses) / np.var(df_heroes)
-        df_p = len(df_princesses) - 1
-        df_h = len(df_heroes) - 1
-        f_pvalue = f.cdf(F, df_p_o, df_h_o)
-        print('F p-value: ', f_pvalue)
+        F = np.var(self.df[self.df[self.group] == values_df_group[0]][self.y_axis]) / np.var(self.df[self.df[self.group] == values_df_group[1]][self.y_axis])
+        df_group_a = len(self.df[self.df[self.group] == values_df_group[0]][self.y_axis]) - 1
+        df_group_b = len(self.df[self.df[self.group] == values_df_group[1]][self.y_axis]) - 1
+        f_pvalue = f.cdf(F, df_group_a, df_group_b)
+        print('F test p-value: ', f_pvalue)
 
-        if (normality_princesses_pvalue > 0.05 and normality_heroes_pvalue > 0.05 and f_pvalue > 0.05):
-            # test
-            test_pvalue = ttest_ind(df_princesses, df_heroes).pvalue
-            print('T-test p-value: ', test_pvalue)
-            return (test_pvalue <= 0.05)
+        if (normality_group_a > 0.01 and normality_group_b > 0.01 and f_pvalue > 0.01):
+            # T-test
+            ttest_pvalue = ttest_ind(self.df[self.df[self.group] == values_df_group[0]][self.y_axis], self.df[self.df[self.group] == values_df_group[1]][self.y_axis]).pvalue
+            print('T-test p-value: ', ttest_pvalue)
+            return ttest_pvalue <= 0.01
+        elif (normality_group_a > 0.01 and normality_group_b > 0.01 and f_pvalue <= 0.01):
+            # Welch's test
+            welch_pvalue = ttest_ind(self.df[self.df[self.group] == values_df_group[0]][self.y_axis], self.df[self.df[self.group] == values_df_group[1]][self.y_axis], equal_var=False).pvalue
+            print('T-test p-value: ', welch_pvalue)
+            return welch_pvalue <= 0.01
         else:
             # Mann-Whitney U test
-            mannwhitneyu_pvalue = mannwhitneyu(df_princesses, df_heroes).pvalue
+            mannwhitneyu_pvalue = mannwhitneyu(self.df[self.df[self.group] == values_df_group[0]][self.y_axis], self.df[self.df[self.group] == values_df_group[1]][self.y_axis]).pvalue
             print('Mann-Whitney U test: ', mannwhitneyu_pvalue)
-            return (mannwhitneyu_pvalue <= 0.05)
+            return mannwhitneyu_pvalue <= 0.01
 
     def __set_locator_and_formatter__(self, ax):
         # TODO: Set major locator and formatter for x_axis
