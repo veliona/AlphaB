@@ -47,8 +47,29 @@ class BucketTest:
     def compute_pvalues(self):
         """ ComputePValues computes all pvalues, variance etc. for each combination of categories within
         the bucket test and renders a table containing the results """
-        # TODO: Compute PValue between A-B, A-C, B-C, etc.
-        print("not implemented")
+        # normality
+        normality_princesses_pvalue = shapiro(df_princesses)[1]
+        normality_heroes_pvalue = shapiro(df_heroes)[1]
+        print('Shapiro princesses p-value: ', normality_princesses_pvalue)
+        print('Shapiro heroes p-value: ', normality_heroes_pvalue)
+
+        # variance
+        F = np.var(df_princesses) / np.var(df_heroes)
+        df_p = len(df_princesses) - 1
+        df_h = len(df_heroes) - 1
+        f_pvalue = f.cdf(F, df_p_o, df_h_o)
+        print('F p-value: ', f_pvalue)
+
+        if (normality_princesses_pvalue > 0.05 and normality_heroes_pvalue > 0.05 and f_pvalue > 0.05):
+            # test
+            test_pvalue = ttest_ind(df_princesses, df_heroes).pvalue
+            print('Test p-value: ', test_pvalue)
+            return (test_pvalue <= 0.05)
+        else:
+            # Mann-Whitney U test
+            mannwhitneyu_pvalue = mannwhitneyu(df_princesses, df_heroes).pvalue
+            print('Mann-Whitney U test: ', mannwhitneyu_pvalue)
+            return (mannwhitneyu_pvalue <= 0.05)
 
     def __set_locator_and_formatter__(self, ax):
         # TODO: Set major locator and formatter for x_axis
