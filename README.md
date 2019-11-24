@@ -4,13 +4,13 @@
 
 ### Current state
 
-This library is in the very initial state. 
+This library is in the very initial state. Currently, it supports only A/B testings (two groups).
 
 ### AlphaB allows you to:
 
-* Automatically generate charts from bucket testing
+* Automatically generate charts from A/B testings
 * Compute statistics in order to confirm a statistical significance between groups
-* Customize the number of groups that are taken into account `ABTESTING`, `ABCTESTING`, `ABCDTESTING` etc.
+
 
 <!-- <p align="center"><img src="images/AlphaB.png" width="250"/></p> -->
 
@@ -26,6 +26,7 @@ You can directly install all of the requirements for AlphaB by running `pip inst
 ### Matplotlib
 
 AlphaB uses the [Matplotlib](https://matplotlib.org/) library in order to generate charts from data sets.
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -60,4 +61,16 @@ def main():
     bucket_test.compute_pvalues()
 ```
 
+## Next steps
+
+* Customize the number of groups that are taken into account A/B/C testings, A/B/C/D testings, A/B/C/D/E testings.
+* Group data frame so that it can be given to `bucket_test.render()`
+* Render charts and compute p-values for data from more than one data frame
+
+
+
 ## Contributors
+
+The method for checking statistical significance was highly inspired by the work of **Paulina Gralak @Loczi94**.
+Thank a lot! :) 
+
