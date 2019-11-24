@@ -96,4 +96,3 @@ class BucketTest:
             mannwhitneyu_pvalue = mannwhitneyu(group_a, group_b).pvalue
             print('Mann-Whitney U test: ', mannwhitneyu_pvalue)
             print("Statistical significance: ", mannwhitneyu_pvalue <= 0.01)
-

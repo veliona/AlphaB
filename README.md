@@ -23,10 +23,10 @@ This library is in the very initial state. Currently, it supports only A/B testi
 
 You can directly install all of the requirements for AlphaB by running `pip install -r requirements.txt` from the root of the repository.
 
-### Matplotlib
-
-AlphaB uses the [Matplotlib](https://matplotlib.org/) library in order to generate charts from data sets.
-
+* [Matplotlib](https://matplotlib.org/) - a library to generate charts from data sets
+* [Pandas](https://pandas.pydata.org/) - a library providing high-performance, easy-to-use data structures and data analysis tools
+* [Numpy](https://numpy.org/) - a library providing support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions
+* [Scipy](https://www.scipy.org/) - a library used for scientific computing and technical computing
 
 ```python
 import matplotlib.pyplot as plt
@@ -61,15 +61,29 @@ def main():
     bucket_test.compute_pvalues()
 ```
 
+### Arguments
+
+* ```df``` - assigns previously grouped data frame to this argument; this can include specification of a certain value within a column in the data frame (exp. `df[df['device' == 'mobile']]`)
+* ```y_axis``` - specifies the values on the y_axis for the chart and statistical significance check
+* ```group``` - assigns a column in the data frame which contains groups for A/B testing
+* ```x_axis``` (default: `date`) - specifies the values on the x_axis for the chart
+* ```custom_title``` (default: `y_axis`) - specifies the title for the chart
+
+
+### Screenshots
+
 ## Next steps
 
 * Customize the number of groups that are taken into account A/B/C testings, A/B/C/D testings, A/B/C/D/E testings.
 * Group data frame so that it can be given to `bucket_test.render()`
 * Render charts and compute p-values for data from more than one data frame
+* Create tests for `render` and `compute_pvalue` methods
 
+## How to contribute
 
+You can contribute by creating a new branch on the repository and a PR 
 
 ## Contributors
 
-The method for checking statistical significance was highly inspired by the work of **Paulina Gralak @Loczi94**.
+The method for checking statistical significance was highly inspired by the work of **Paulina Gralak [@Loczi94](https://github.com/Loczi94)**.
 Thank a lot!
