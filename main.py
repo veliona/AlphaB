@@ -4,7 +4,6 @@ from bucket_test import BucketTest, GroupBy
 import pandas as pd
 
 
-
 def main():
     df = pd.DataFrame()
     bucket_test = BucketTest(
@@ -13,6 +12,7 @@ def main():
         group='design',
         x_axis='date',
         custom_title='Impressions by design for mobile',
+        custom_ylabel='#'
     )
     bucket_test.render()
     bucket_test.compute_pvalues()
