@@ -2,6 +2,7 @@
 
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 from scipy.stats import shapiro
 from scipy.stats import ttest_ind
 from scipy.stats import f
@@ -11,14 +12,15 @@ from scipy.stats import mannwhitneyu
 class BucketTest:
     """ BucketTest class computes and renders charts and statistics for bucket testing. """
 
-    def __init__(self, df: pd.DataFrame, y_axis: str, group: str, x_axis='date', custom_title="", custom_ylabel=""):
+    def __init__(self, df: pd.DataFrame, y_axis: str, group: str, x_axis='date', custom_title="", custom_interval=1,
+                 custom_ylabel=""):
         """ Create a new bucket test with the given attributes """
         self.df = df
         self.y_axis = y_axis
         self.x_axis = x_axis
         self.group = group
         self.custom_title = custom_title
-        # TODO: Set time interval (each day, each week, etc.)
+        self.custom_interval = custom_interval
         self.custom_ylabel = custom_ylabel
 
     def render(self, figure_size_x=12, figure_size_y=5, line_width=3, title_font_size=16, legend_font_size=14):
@@ -49,8 +51,11 @@ class BucketTest:
         plt.show()
 
     def __set_locator_and_formatter__(self, ax):
-        # TODO: Set major locator and formatter for x_axis
-        ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
+        # Major locator customization statement
+        if self.custom_interval != 1:
+            ax.xaxis.set_major_locator(mdates.DayLocator(interval=self.custom_interval))
+        else:
+            ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
 
     def compute_pvalues(self):
@@ -66,22 +71,22 @@ class BucketTest:
         # normality
         normality_group_a = shapiro(group_a)
         normality_group_b = shapiro(group_b)
-        print('Shapiro group A p-value: ', normality_group_a)
-        print('Shapiro group B p-value: ', normality_group_b)
+        print('Shapiro group A p-value: ', normality_group_a[1])
+        print('Shapiro group B p-value: ', normality_group_b[1])
 
         # variance
         F = np.var(group_a) / np.var(group_b)
-        df_group_a = len(group_a) - 1
-        df_group_b = len(group_b) - 1
-        f_pvalue = f.cdf(F, df_group_a, df_group_b)
+        critical_value_group_a = len(group_a) - 1
+        critical_value_group_b = len(group_b) - 1
+        f_pvalue = f.cdf(F, critical_value_group_a, critical_value_group_b)
         print('F test p-value: ', f_pvalue)
 
-        if (normality_group_a[1] and normality_group_b[1] > 0.01) and f_pvalue > 0.01:
+        if (normality_group_a[1] and normality_group_b > 0.01[1]) and f_pvalue > 0.01:
             # T-test
             ttest_pvalue = ttest_ind(group_a, group_b).pvalue
             print('T-test p-value: ', ttest_pvalue)
             print("Statistical significance: ", ttest_pvalue <= 0.01)
-        elif (normality_group_a[1] and normality_group_b[1] > 0.01) and f_pvalue <= 0.01:
+        elif (normality_group_a[1] and normality_group_b > 0.01[1]) and f_pvalue <= 0.01:
             # Welch's test
             welch_pvalue = ttest_ind(group_a, group_b, equal_var=False).pvalue
             print('T-test p-value: ', welch_pvalue)

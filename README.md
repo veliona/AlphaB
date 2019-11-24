@@ -72,5 +72,4 @@ def main():
 ## Contributors
 
 The method for checking statistical significance was highly inspired by the work of **Paulina Gralak @Loczi94**.
-Thank a lot! :) 
-
+Thank a lot!
