@@ -87,6 +87,7 @@ A generated chart and statistical significance analysis example:
 * Group data frame so that it can be given to `bucket_test.render()`
 * Render charts and compute p-values for data from more than one data frame
 * Create tests for `render` and `compute_pvalue` methods
+* Handle other `x_axis` that date only
 
 ## How to contribute
 
