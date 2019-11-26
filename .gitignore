@@ -1,2 +1,4 @@
 # IDE
 .idea/*
+.DS_Store
+example/.ipynb_checkpoints

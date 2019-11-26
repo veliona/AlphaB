@@ -67,11 +67,11 @@ def main():
 
 ### Arguments
 
-* ```df``` - assigns previously grouped data frame to this argument; this can include specification of a certain value within a column in the data frame (exp. `df[df['device' == 'mobile']]`)
-* ```y_axis``` - specifies the values on the y_axis for the chart and statistical significance check
-* ```group``` - assigns a column in the data frame which contains groups for A/B testing
-* ```x_axis``` (default: `date`) - specifies the values on the x_axis for the chart
-* ```custom_title``` (default: `y_axis`) - specifies the title for the chart
+* `df` - data frame to be used for the bucket test. It is recommended to group the data frame before passing it (e.g.: When doing a bucket test on the group `design`, you should group the data frame by design and date first)
+* `y_axis` - specifies the values on the y_axis for the chart and statistical significance check
+* `group` - assigns a column in the data frame which contains groups for A/B testing
+* `x_axis` (default: `date`) - specifies the values on the x_axis for the chart
+* `custom_title` (default: `y_axis`) - specifies the title for the chart
 
 
 ### Screenshots
