@@ -32,7 +32,7 @@ class BucketTest:
             df.set_index(self.x_axis, drop=False, inplace=True)
             ax.plot(df[self.y_axis], label=group_value, linewidth=line_width)
 
-        # Title customization statement
+        # Title customization
         if self.custom_title != "":
             plt.title(self.custom_title, fontsize=title_font_size)
         else:
@@ -46,17 +46,15 @@ class BucketTest:
             plt.ylabel('')
 
         plt.ylim(0, )
-        plt.xticks(rotation=30);
+        plt.xticks(rotation=30)
         self.__set_locator_and_formatter__(ax)
         plt.show()
-        plt.savefig(Path("Chart"));
+        plt.savefig(Path("Chart"))
 
     def __set_locator_and_formatter__(self, ax):
-        # Major locator customization statement
+        # Major locator customization
         if self.custom_day_interval != 1:
             ax.xaxis.set_major_locator(mdates.DayLocator(interval=self.custom_day_interval))
-        else:
-            ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
 
     def compute_pvalues(self):
