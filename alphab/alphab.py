@@ -83,16 +83,17 @@ class BucketTest:
         f_pvalue = f.cdf(F, critical_value_group_a, critical_value_group_b)
         print('F test p-value: ', f_pvalue)
 
-        if (normality_pvalue_a and normality_pvalue_b) > 0.01 and f_pvalue > 0.01:
-            # T-test
-            ttest_pvalue = ttest_ind(group_a, group_b).pvalue
-            print('T-test p-value: ', ttest_pvalue)
-            print("Statistical significance: ", ttest_pvalue <= 0.01)
-        elif (normality_pvalue_a and normality_pvalue_b) > 0.01 and f_pvalue <= 0.01:
-            # Welch's test
-            welch_pvalue = ttest_ind(group_a, group_b, equal_var=False).pvalue
-            print('T-test p-value: ', welch_pvalue)
-            print("Statistical significance: ", welch_pvalue <= 0.01)
+        if normality_pvalue_a > 0.01 and normality_pvalue_b > 0.01:
+            if f_pvalue > 0.01:
+                # T-test
+                ttest_pvalue = ttest_ind(group_a, group_b).pvalue
+                print('T-test p-value: ', ttest_pvalue)
+                print("Statistical significance: ", ttest_pvalue <= 0.01)
+            else:
+                # Welch's test
+                welch_pvalue = ttest_ind(group_a, group_b, equal_var=False).pvalue
+                print('T-test p-value: ', welch_pvalue)
+                print("Statistical significance: ", welch_pvalue <= 0.01)
         else:
             # Mann-Whitney U test
             mannwhitneyu_pvalue = mannwhitneyu(group_a, group_b).pvalue
