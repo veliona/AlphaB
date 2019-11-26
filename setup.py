@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="alphab-veliona",
+    name="alphab",
     version="0.1",
     author="Julia Jakubczak",
     author_email="jjakubczak@wikia-inc.com",
