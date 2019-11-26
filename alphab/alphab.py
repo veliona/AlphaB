@@ -71,10 +71,10 @@ class BucketTest:
         group_b = self.df[self.df[self.group] == values_df_group[1]][self.variable]
 
         # normality
-        normality_group_a = shapiro(group_a)
-        normality_group_b = shapiro(group_b)
-        print('Shapiro group A p-value: ', normality_group_a[1])
-        print('Shapiro group B p-value: ', normality_group_b[1])
+        normality_group_a, normality_pvalue_a = shapiro(group_a)
+        normality_group_b, normality_pvalue_b = shapiro(group_b)
+        print('Shapiro group A p-value: ', normality_pvalue_a)
+        print('Shapiro group B p-value: ', normality_pvalue_b)
 
         # variance
         F = np.var(group_a) / np.var(group_b)
@@ -83,12 +83,12 @@ class BucketTest:
         f_pvalue = f.cdf(F, critical_value_group_a, critical_value_group_b)
         print('F test p-value: ', f_pvalue)
 
-        if (normality_group_a[1] and normality_group_b > 0.01[1]) and f_pvalue > 0.01:
+        if (normality_pvalue_a and normality_pvalue_b) > 0.01 and f_pvalue > 0.01:
             # T-test
             ttest_pvalue = ttest_ind(group_a, group_b).pvalue
             print('T-test p-value: ', ttest_pvalue)
             print("Statistical significance: ", ttest_pvalue <= 0.01)
-        elif (normality_group_a[1] and normality_group_b > 0.01[1]) and f_pvalue <= 0.01:
+        elif (normality_pvalue_a and normality_pvalue_b) > 0.01 and f_pvalue <= 0.01:
             # Welch's test
             welch_pvalue = ttest_ind(group_a, group_b, equal_var=False).pvalue
             print('T-test p-value: ', welch_pvalue)
