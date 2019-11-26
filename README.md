@@ -54,7 +54,7 @@ def main():
     df = pd.DataFrame()
     bucket_test = BucketTest(
         df=df[df['device'] == 'mobile'],
-        y_axis='impressions',
+        variable='impressions',
         group='design',
         x_axis='date',
         custom_title='Impressions by design for mobile',
@@ -70,10 +70,10 @@ def main():
 When creating a bucket test, you can specify the following arguments:
 
 * `df` - data frame to be used for the bucket test. It is recommended to group the data frame before passing it (e.g.: When doing a bucket test on the group `design`, you should group the data frame by design and date first)
-* `y_axis` - specifies the values on the y_axis for the chart and statistical significance check
+* `variable` - specifies the values on the y-axis for the chart and statistical significance check
 * `group` - the name of the column which the data frame is grouped by
 * `x_axis` (default: `date`) - specifies the values on the x_axis for the chart
-* `custom_title` (default: `y_axis`) - specifies the title for the chart
+* `custom_title` (default: `{variable} per {group}`) - specifies the title for the chart
 
 For the `render()` method, those options can be specified to customize your chart:
 

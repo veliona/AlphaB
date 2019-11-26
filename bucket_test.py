@@ -12,11 +12,11 @@ from scipy.stats import mannwhitneyu
 class BucketTest:
     """ BucketTest class computes and renders charts and statistics for bucket testing """
 
-    def __init__(self, df: pd.DataFrame, y_axis: str, group: str, x_axis='date', custom_title="", custom_day_interval=1,
+    def __init__(self, df: pd.DataFrame, variable: str, group: str, x_axis='date', custom_title="", custom_day_interval=1,
                  custom_ylabel=""):
         """ Create a new bucket test with the given attributes """
         self.df = df
-        self.y_axis = y_axis
+        self.variable = variable
         self.x_axis = x_axis
         self.group = group
         self.custom_title = custom_title
@@ -30,20 +30,20 @@ class BucketTest:
         for group_value in self.df[self.group].unique():
             df = self.df[self.df[self.group] == group_value]
             df.set_index(self.x_axis, drop=False, inplace=True)
-            ax.plot(df[self.y_axis], label=group_value, linewidth=line_width)
+            ax.plot(df[self.variable], label=group_value, linewidth=line_width)
 
         # Title customization
         if self.custom_title != "":
             plt.title(self.custom_title, fontsize=title_font_size)
         else:
-            plt.title('{} per {}'.format(self.y_axis, self.group), fontsize=title_font_size)
+            plt.title('{} per {}'.format(self.variable, self.group), fontsize=title_font_size)
         plt.legend(bbox_to_anchor=(1.3, 0.8), frameon=False, fontsize=legend_font_size)
 
         # Y-label customization statement
         if self.custom_ylabel != "":
             plt.ylabel(self.custom_ylabel)
         else:
-            plt.ylabel(self.y_axis)
+            plt.ylabel(self.variable)
 
         plt.ylim(0, )
         plt.xticks(rotation=30)
@@ -64,8 +64,8 @@ class BucketTest:
         values_df_group = self.df[self.group].unique()
 
         # Create variables for group A and B
-        group_a = self.df[self.df[self.group] == values_df_group[0]][self.y_axis]
-        group_b = self.df[self.df[self.group] == values_df_group[1]][self.y_axis]
+        group_a = self.df[self.df[self.group] == values_df_group[0]][self.variable]
+        group_b = self.df[self.df[self.group] == values_df_group[1]][self.variable]
 
         # normality
         normality_group_a = shapiro(group_a)
