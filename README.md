@@ -90,7 +90,7 @@ A generated chart and statistical significance analysis example:
 
 ## How to contribute
 
-You can contribute by creating a new branch on the repository and a PR 
+You can contribute by forking this repository, looking through the [issues](https://github.com/Wikia/AlphaB/issues) of the repository, and opening a PR on your fork. Please make sure to write a clear PR description and to provide examples for how your new feature works.
 
 ## Contributors
 
