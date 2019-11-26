@@ -39,7 +39,7 @@ class BucketTest:
             plt.title('{} per {}'.format(self.variable, self.group), fontsize=title_font_size)
         plt.legend(bbox_to_anchor=(1.3, 0.8), frameon=False, fontsize=legend_font_size)
 
-        # Y-label customization statement
+        # Y-label customization
         if self.custom_ylabel != "":
             plt.ylabel(self.custom_ylabel)
         else:
@@ -60,7 +60,7 @@ class BucketTest:
     def compute_pvalues(self):
         """ ComputePValues computes all pvalues, variance etc. for each combination of categories within
         the bucket test and renders a table containing the results """
-        # Create a list with unique values from a dataframe
+        # Create a list with unique values from a data frame
         values_df_group = self.df[self.group].unique()
 
         # Create variables for group A and B
