@@ -27,9 +27,14 @@ You can directly install all of the requirements for AlphaB by running `pip inst
 * [Pandas](https://pandas.pydata.org/) - a library providing high-performance, easy-to-use data structures and data analysis tools
 * [Numpy](https://numpy.org/) - a library providing support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions
 * [Scipy](https://www.scipy.org/) - a library used for scientific computing and technical computing
+* [Pathlib](https://docs.python.org/3/library/pathlib.html) - offers a set of classes to handle filesystem paths
 
 ```python
+import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
+from scipy import stats
+from pathlib import Path
 ```
 
 ## How to use it
