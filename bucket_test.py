@@ -43,7 +43,7 @@ class BucketTest:
         if self.custom_ylabel != "":
             plt.ylabel(self.custom_ylabel)
         else:
-            plt.ylabel('')
+            plt.ylabel(self.y_axis)
 
         plt.ylim(0, )
         plt.xticks(rotation=30)
