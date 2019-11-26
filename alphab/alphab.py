@@ -48,7 +48,7 @@ class BucketTest:
         else:
             plt.ylabel(self.variable)
 
-        plt.ylim(0, )
+        plt.ylim(0)
         plt.xticks(rotation=30)
         self.__set_locator_and_formatter__(ax)
         plt.show()
