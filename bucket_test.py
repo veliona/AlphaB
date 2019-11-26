@@ -12,7 +12,7 @@ from scipy.stats import mannwhitneyu
 class BucketTest:
     """ BucketTest class computes and renders charts and statistics for bucket testing """
 
-    def __init__(self, df: pd.DataFrame, y_axis: str, group: str, x_axis='date', custom_title="", custom_interval=1,
+    def __init__(self, df: pd.DataFrame, y_axis: str, group: str, x_axis='date', custom_title="", custom_day_interval=1,
                  custom_ylabel=""):
         """ Create a new bucket test with the given attributes """
         self.df = df
@@ -20,7 +20,7 @@ class BucketTest:
         self.x_axis = x_axis
         self.group = group
         self.custom_title = custom_title
-        self.custom_interval = custom_interval
+        self.custom_day_interval = custom_day_interval
         self.custom_ylabel = custom_ylabel
 
     def render(self, figure_size_x=12, figure_size_y=5, line_width=3, title_font_size=16, legend_font_size=14):
@@ -53,8 +53,8 @@ class BucketTest:
 
     def __set_locator_and_formatter__(self, ax):
         # Major locator customization statement
-        if self.custom_interval != 1:
-            ax.xaxis.set_major_locator(mdates.DayLocator(interval=self.custom_interval))
+        if self.custom_day_interval != 1:
+            ax.xaxis.set_major_locator(mdates.DayLocator(interval=self.custom_day_interval))
         else:
             ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))

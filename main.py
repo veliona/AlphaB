@@ -13,7 +13,7 @@ def main():
         x_axis='date',
         custom_title='Impressions by design for mobile',
         custom_ylabel='#',
-        custom_interval=1
+        custom_day_interval=1
     )
     bucket_test.render()
     bucket_test.compute_pvalues()
