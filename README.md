@@ -76,6 +76,12 @@ def main():
 
 ### Screenshots
 
+A generated chart and statistical significance analysis example:
+
+<p align="center">
+  <img width="40%" src="example/example_impressions_by_group.png" />
+</p>
+
 ## Next steps
 
 * Customize the number of groups that are taken into account A/B/C testings, A/B/C/D testings, A/B/C/D/E testings.
