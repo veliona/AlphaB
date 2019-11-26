@@ -83,8 +83,7 @@ A generated chart and statistical significance analysis example:
 
 ## Next steps
 
-* Customize the number of groups that are taken into account A/B/C testings, A/B/C/D testings, A/B/C/D/E testings.
-* Group data frame so that it can be given to `bucket_test.render()`
+* Customize the number of groups that are taken into account A/B/C testings, A/B/C/D testings, A/B/C/D/E testings
 * Render charts and compute p-values for data from more than one data frame
 * Create tests for `render` and `compute_pvalue` methods
 * Handle other `x_axis` that date only
