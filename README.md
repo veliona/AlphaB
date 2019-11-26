@@ -95,4 +95,4 @@ You can contribute by forking this repository, looking through the [issues](http
 ## Contributors
 
 The method for checking statistical significance was highly inspired by the work of **Paulina Gralak [@Loczi94](https://github.com/Loczi94)**.
-Thank a lot!
+Thanks a lot!
