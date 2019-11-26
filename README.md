@@ -69,7 +69,7 @@ def main():
 
 * ```df``` - assigns previously grouped data frame to this argument; this can include specification of a certain value within a column in the data frame (exp. `df[df['device' == 'mobile']]`)
 * ```y_axis``` - specifies the values on the y_axis for the chart and statistical significance check
-* ```group``` - assigns a column in the data frame which contains groups for A/B testing
+* `group` - the name of the column which the data frame is grouped by
 * ```x_axis``` (default: `date`) - specifies the values on the x_axis for the chart
 * ```custom_title``` (default: `y_axis`) - specifies the title for the chart
 
