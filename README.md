@@ -67,11 +67,21 @@ def main():
 
 ### Arguments
 
+When creating a bucket test, you can specify the following arguments:
+
 * `df` - data frame to be used for the bucket test. It is recommended to group the data frame before passing it (e.g.: When doing a bucket test on the group `design`, you should group the data frame by design and date first)
 * `y_axis` - specifies the values on the y_axis for the chart and statistical significance check
 * `group` - the name of the column which the data frame is grouped by
 * `x_axis` (default: `date`) - specifies the values on the x_axis for the chart
 * `custom_title` (default: `y_axis`) - specifies the title for the chart
+
+For the `render()` method, those options can be specified to customize your chart:
+
+* `figure_size_x` (default: 12) - the width of the chart (in inches)
+* `figure_size_y` (default: 5) - the height of the chart (in inches)
+* `line_width` (default: 3) - the line width in a line chart (in points)
+* `title_font_size` (default: 16) -  the font size of the title in the figure 
+* `legend_font_size` (default: 14) -  the font size of the legend in the figure
 
 ### Screenshots
 
