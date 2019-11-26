@@ -79,7 +79,7 @@ def main():
 A generated chart and statistical significance analysis example:
 
 <p align="center">
-  <img width="40%" src="example/example_impressions_by_group.png" />
+  <img width="100%" src="example/example_impressions_by_group.png" />
 </p>
 
 ## Next steps
