@@ -53,11 +53,11 @@ import pandas as pd
 def main():
     df = pd.DataFrame()
     bucket_test = BucketTest(
-        df=df[df['device'] == 'mobile'],
+        df=df,
         variable='impressions',
         group='design',
         x_axis='date',
-        custom_title='Impressions by design for mobile',
+        custom_title='Impressions by design',
         custom_ylabel='#',
         custom_day_interval=1
     )
@@ -97,6 +97,7 @@ A generated chart and statistical significance analysis example:
 * Render charts and compute p-values for data from more than one data frame
 * Create tests for `render` and `compute_pvalue` methods
 * Handle other `x_axis` that date only
+* Customize names of images `plt.savefig(Path(""))`
 
 ## How to contribute
 
