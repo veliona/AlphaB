@@ -10,7 +10,7 @@ from scipy.stats import mannwhitneyu
 
 
 class BucketTest:
-    """ BucketTest class computes and renders charts and statistics for bucket testing. """
+    """ BucketTest class computes and renders charts and statistics for bucket testing """
 
     def __init__(self, df: pd.DataFrame, y_axis: str, group: str, x_axis='date', custom_title="", custom_interval=1,
                  custom_ylabel=""):
@@ -49,6 +49,7 @@ class BucketTest:
         plt.xticks(rotation=30);
         self.__set_locator_and_formatter__(ax)
         plt.show()
+        plt.savefig(Path("Chart"));
 
     def __set_locator_and_formatter__(self, ax):
         # Major locator customization statement
