@@ -8,7 +8,7 @@ def main():
     df = pd.DataFrame()
     bucket_test = BucketTest(
         df=df,
-        y_axis='impressions',
+        variable='impressions',
         group='design',
         x_axis='date',
         custom_title='Impressions by design',
