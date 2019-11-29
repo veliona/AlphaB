@@ -15,8 +15,8 @@ from pathlib import Path
 class BucketTest:
     """ BucketTest class computes and renders charts and statistics for bucket testing """
 
-    def __init__(self, df: pd.DataFrame, variable: str, group: str, x_axis='date', custom_title="", custom_day_interval=1,
-                 custom_ylabel=""):
+    def __init__(self, df: pd.DataFrame, variable: str, group: str, x_axis='date', custom_title='', custom_day_interval=1,
+                 custom_ylabel=''):
         """ Create a new bucket test with the given attributes """
         self.df = df
         self.variable = variable
@@ -36,7 +36,7 @@ class BucketTest:
             ax.plot(df[self.variable], label=group_value, linewidth=line_width)
 
         # Title customization
-        if self.custom_title != "":
+        if self.custom_title != '':
             plt.title(self.custom_title, fontsize=title_font_size)
         else:
             plt.title('{} per {}'.format(self.variable, self.group), fontsize=title_font_size)
@@ -52,7 +52,7 @@ class BucketTest:
         plt.xticks(rotation=30)
         self.__set_locator_and_formatter__(ax)
         plt.show()
-        plt.savefig(Path("Chart"))
+        plt.savefig(Path('Chart'))
 
     def __set_locator_and_formatter__(self, ax):
         # Major locator customization
@@ -88,14 +88,14 @@ class BucketTest:
                 # T-test
                 ttest_pvalue = ttest_ind(group_a, group_b).pvalue
                 print('T-test p-value: ', ttest_pvalue)
-                print("Statistical significance: ", ttest_pvalue <= 0.01)
+                print('Statistical significance: ', ttest_pvalue <= 0.01)
             else:
                 # Welch's test
                 welch_pvalue = ttest_ind(group_a, group_b, equal_var=False).pvalue
                 print('T-test p-value: ', welch_pvalue)
-                print("Statistical significance: ", welch_pvalue <= 0.01)
+                print('Statistical significance: ', welch_pvalue <= 0.01)
         else:
             # Mann-Whitney U test
             mannwhitneyu_pvalue = mannwhitneyu(group_a, group_b).pvalue
             print('Mann-Whitney U test: ', mannwhitneyu_pvalue)
-            print("Statistical significance: ", mannwhitneyu_pvalue <= 0.01)
+            print('Statistical significance: ', mannwhitneyu_pvalue <= 0.01)
