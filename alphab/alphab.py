@@ -26,6 +26,7 @@ class BucketTest:
         self.custom_day_interval = custom_day_interval
         self.custom_ylabel = custom_ylabel
 
+
     def render(self, figure_size_x=12, figure_size_y=5, line_width=3, title_font_size=16, legend_font_size=14):
         """ Render renders the charts representing the bucket test """
 
@@ -43,7 +44,7 @@ class BucketTest:
         plt.legend(bbox_to_anchor=(1.3, 0.8), frameon=False, fontsize=legend_font_size)
 
         # Y-label customization
-        if self.custom_ylabel != "":
+        if self.custom_ylabel != '':
             plt.ylabel(self.custom_ylabel)
         else:
             plt.ylabel(self.variable)
@@ -60,7 +61,7 @@ class BucketTest:
             ax.xaxis.set_major_locator(mdates.DayLocator(interval=self.custom_day_interval))
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
 
-    def compute_pvalues(self):
+    def compute_pvalues(self, alpha=0.01):
         """ ComputePValues computes all pvalues, variance etc. for each combination of categories within
         the bucket test and renders a table containing the results """
         # Create a list with unique values from a data frame
@@ -83,19 +84,19 @@ class BucketTest:
         f_pvalue = f.cdf(F, critical_value_group_a, critical_value_group_b)
         print('F test p-value: ', f_pvalue)
 
-        if normality_pvalue_a > 0.01 and normality_pvalue_b > 0.01:
-            if f_pvalue > 0.01:
+        if normality_pvalue_a > alpha and normality_pvalue_b > alpha:
+            if f_pvalue > alpha:
                 # T-test
                 ttest_pvalue = ttest_ind(group_a, group_b).pvalue
                 print('T-test p-value: ', ttest_pvalue)
-                print('Statistical significance: ', ttest_pvalue <= 0.01)
+                print('Statistical significance: ', ttest_pvalue <= alpha)
             else:
                 # Welch's test
                 welch_pvalue = ttest_ind(group_a, group_b, equal_var=False).pvalue
                 print('T-test p-value: ', welch_pvalue)
-                print('Statistical significance: ', welch_pvalue <= 0.01)
+                print('Statistical significance: ', welch_pvalue <= alpha)
         else:
             # Mann-Whitney U test
             mannwhitneyu_pvalue = mannwhitneyu(group_a, group_b).pvalue
             print('Mann-Whitney U test: ', mannwhitneyu_pvalue)
-            print('Statistical significance: ', mannwhitneyu_pvalue <= 0.01)
+            print('Statistical significance: ', mannwhitneyu_pvalue <= alpha)
