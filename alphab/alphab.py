@@ -46,7 +46,7 @@ class BucketTest:
         if self.custom_ylabel != "":
             plt.ylabel(self.custom_ylabel)
         else:
-            plt.ylabel(self.variable)
+            plt.ylabel(self.custom_ylabel or self.variable)
 
         plt.ylim(0)
         plt.xticks(rotation=30)
