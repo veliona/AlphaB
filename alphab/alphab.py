@@ -12,8 +12,8 @@ from scipy.stats import f, mannwhitneyu, shapiro, ttest_ind
 class BucketTest:
     """ BucketTest class computes and renders charts and statistics for bucket testing """
 
-    def __init__(self, df: pd.DataFrame, variable: str, group: str, x_axis='date', custom_title='', custom_day_interval=1,
-                 custom_ylabel=''):
+    def __init__(self, df: pd.DataFrame, variable: str, group: str, x_axis='date', custom_title='',
+                 custom_day_interval=1, custom_ylabel=''):
         """ Create a new bucket test with the given attributes """
         self.df = df
         self.variable = variable
@@ -22,7 +22,6 @@ class BucketTest:
         self.custom_title = custom_title
         self.custom_day_interval = custom_day_interval
         self.custom_ylabel = custom_ylabel
-
 
     def render(self, figure_size_x=12, figure_size_y=5, line_width=3, title_font_size=16, legend_font_size=14):
         """ Render renders the charts representing the bucket test """
