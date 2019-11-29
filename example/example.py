@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-from alphab import BucketTest
 import pandas as pd
+
+from alphab import BucketTest
 
 
 def main():

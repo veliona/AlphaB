@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
 
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
-import matplotlib.dates as mdates
-
-from scipy.stats import shapiro
-from scipy.stats import ttest_ind
-from scipy.stats import f
-from scipy.stats import mannwhitneyu
 from pathlib import Path
+
+import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from scipy.stats import f, mannwhitneyu, shapiro, ttest_ind
 
 
 class BucketTest:
