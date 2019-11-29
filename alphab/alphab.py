@@ -44,10 +44,7 @@ class BucketTest:
         plt.legend(bbox_to_anchor=(1.3, 0.8), frameon=False, fontsize=legend_font_size)
 
         # Y-label customization
-        if self.custom_ylabel != '':
-            plt.ylabel(self.custom_ylabel)
-        else:
-            plt.ylabel(self.variable)
+        plt.ylabel(self.custom_ylabel or self.variable)
 
         plt.ylim(0)
         plt.xticks(rotation=30)
