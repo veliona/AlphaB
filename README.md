@@ -83,6 +83,11 @@ For the `render()` method, those options can be specified to customize your char
 * `title_font_size` (default: 16) -  the font size of the title in the figure 
 * `legend_font_size` (default: 14) -  the font size of the legend in the figure
 
+In the `compute_pvalues()` method, you can customize the p-value used to reject a null hypothesis by adjusting `alpha` value (default: 0.01).
+Recommended values are: 0.01, 0.05, 0.1.
+Read more about statistical significance and p-value [here](https://www.statsdirect.com/help/basics/p_values.htm).
+I also, recommend [this research paper](http://www.scielo.br/pdf/bpsr/v7n1/02.pdf) for those who wants better understand those topics.
+
 ### Screenshots
 
 A generated chart and statistical significance analysis example:
