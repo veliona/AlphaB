@@ -23,7 +23,8 @@ class BucketTest:
         self.custom_day_interval = custom_day_interval
         self.custom_ylabel = custom_ylabel
 
-    def render(self, figure_size_x=12, figure_size_y=5, line_width=3, title_font_size=16, legend_font_size=14):
+    def render(self, figure_size_x=12, figure_size_y=5, line_width=3, title_font_size=16, legend_font_size=14,
+               rotation=30):
         """ Render renders the charts representing the bucket test """
 
         fig, ax = plt.subplots(figsize=(figure_size_x, figure_size_y))
@@ -43,7 +44,7 @@ class BucketTest:
         plt.ylabel(self.custom_ylabel or self.variable)
 
         plt.ylim(0)
-        plt.xticks(rotation=30)
+        plt.xticks(rotation=rotation)
         self.__set_locator_and_formatter__(ax)
         plt.show()
         plt.savefig(Path('Chart'))
@@ -86,7 +87,7 @@ class BucketTest:
             else:
                 # Welch's test
                 welch_pvalue = ttest_ind(group_a, group_b, equal_var=False).pvalue
-                print('T-test p-value: ', welch_pvalue)
+                print('Welch p-value: ', welch_pvalue)
                 print('Statistical significance: ', welch_pvalue <= alpha)
         else:
             # Mann-Whitney U test

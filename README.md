@@ -12,8 +12,6 @@ This library is in the very initial state. Currently, it supports only A/B testi
 * Compute statistics in order to confirm a statistical significance between groups
 
 
-<!-- <p align="center"><img src="images/AlphaB.png" width="250"/></p> -->
-
 ## Table of content
 
 * [Requirements](#requirements)
