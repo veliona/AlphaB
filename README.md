@@ -80,6 +80,7 @@ For the `render()` method, those options can be specified to customize your char
 * `line_width` (default: 3) - the line width in a line chart (in points)
 * `title_font_size` (default: 16) -  the font size of the title in the figure 
 * `legend_font_size` (default: 14) -  the font size of the legend in the figure
+* `rotation` (default: 30) - the rotation of the x ticks (in degrees)
 
 In the `compute_pvalues()` method, you can customize the p-value used to reject a null hypothesis by adjusting the `alpha` value (default: `0.01`).
 Recommended values are: `0.01`, `0.05`, `0.1`.
